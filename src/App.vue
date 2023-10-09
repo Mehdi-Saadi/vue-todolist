@@ -33,6 +33,7 @@ watch(tasks, newVal => {
 
 onMounted(() => {
     tasks.value = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.value = tasks.value.reverse();
 });
 </script>
 
@@ -70,7 +71,10 @@ onMounted(() => {
                 <button type="submit" class="bg-pink-500 hover:bg-pink-400 transition duration-150 w-full rounded-xl text-gray-100 py-2">Add Task</button>
             </form>
 
-            <div class="mt-4 space-y-4 text-gray-600">
+            <div v-if="! tasks.length" class="mt-10 flex justify-center">You're done!</div>
+            <div
+                class="mt-4 space-y-4 text-gray-600"
+                v-else>
                 <h4 class="text-sm">Tasks:</h4>
 
                 <div
