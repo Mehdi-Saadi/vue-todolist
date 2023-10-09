@@ -4,9 +4,6 @@ import { ref, onMounted, computed, watch } from 'vue';
 const tasks = ref([]);
 const new_task = ref('');
 const input_category = ref('personal');
-const todos_asc = computed(() => tasks.value.sort((a, b) => {
-    return b.created_at - a.created_at;
-}));
 
 const addTask = () => {
     if (new_task.value.trim() === '') {
@@ -33,7 +30,6 @@ watch(tasks, newVal => {
 
 onMounted(() => {
     tasks.value = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.value = tasks.value.reverse();
 });
 </script>
 
